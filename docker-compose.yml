@@ -1,0 +1,27 @@
+version: '3'
+
+volumes:
+  dbt:
+
+services:
+  dbt:
+    build:
+      context: .
+      dockerfile: ./docker/dbt/Dockerfile
+    container_name: dbt
+    stdin_open: true
+    tty: true
+    volumes:
+      - dbt:/app/dbt
+    env_file: .env
+  superset:
+    build:
+      context: .
+      dockerfile: ./docker/superset/Dockerfile
+    container_name: superset
+    ports:
+      - 8080:8088
+    volumes:
+      - dbt:/app/dbt
+    environment:
+      - SUPERSET_SECRET_KEY=foobar

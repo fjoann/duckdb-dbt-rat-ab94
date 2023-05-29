@@ -1,0 +1,6 @@
+sources:
+  - name: nytaxi
+    tables:
+      - name: fhvhv
+        meta:
+          external_location: "abfs://nytaxi/fhvhv_tripdata_2020-01.parquet"

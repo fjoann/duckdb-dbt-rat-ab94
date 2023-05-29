@@ -1,0 +1,4 @@
+models:
+  - name: tips
+    config:
+      materialized: table

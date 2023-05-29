@@ -1,0 +1,13 @@
+duckdb:
+  outputs:
+    dev:
+      type: duckdb
+      path: demo.duckdb
+      extensions:
+        - httpfs
+        - parquet
+      filesystems:
+        - fs: abfs
+          account_name: "{{ env_var('AZURE_STORAGE_ACCOUNT_NAME') }}"
+          account_key: "{{ env_var('AZURE_STORAGE_ACCOUNT_KEY') }}"
+  target: dev

@@ -1,0 +1,14 @@
+#!/bin/bash
+echo "Setting up a local admin account..."
+docker exec -it superset superset fab create-admin \
+  --username admin \
+  --password admin \
+  --firstname Superset \
+  --lastname Admin \
+  --email admin@superset.com
+
+echo "Migrating local DB to latest version..."
+docker exec -it superset superset db upgrade
+
+echo "Setting up roles..."
+docker exec -it superset superset init
